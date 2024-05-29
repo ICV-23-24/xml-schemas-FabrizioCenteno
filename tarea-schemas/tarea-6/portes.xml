@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<portes xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance"
+    xsd:noNamespaceSchemaLocation="portes.xsd">
+    <recepcion>
+        <producto>Fruta</producto>
+        <cantidad>125.5</cantidad>
+        <codigoreceptor>333-AZT</codigoreceptor>
+    </recepcion>
+    <entrega receptor="Mercados SL" coste="1321">
+        <transportista>T2</transportista>
+        <distancia unidad="millas">468</distancia>
+    </entrega>
+    <recepcion>
+        <producto>Verdura</producto>
+        <cantidad>250</cantidad>
+    </recepcion>
+</portes>

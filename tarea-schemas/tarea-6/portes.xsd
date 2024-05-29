@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="portes" type="portesType"/>
+
+    <xsd:complexType name="portesType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="recepcion" type="recepcionType"/>
+                    <xsd:element name="entrega" type="entregaType"/>
+                </xsd:choice>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="recepcionType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:sequence>
+                    <xsd:element name="producto" type="xsd:string" minOccurs="1"/>
+                    <xsd:element name="cantidad" type="cantidadType"/>
+                    <xsd:element name="codigoreceptor" type="codigoreceptorType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:restriction>  
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="cantidadType">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="codigoreceptorType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="\d{3}-[a-zA-Z]{3}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="entregaType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:sequence>
+                    <xsd:element name="transportista" type="transportistaType"/>
+                    <xsd:element name="distancia" type="distanciaType"/>
+                </xsd:sequence>
+                <xsd:attribute name="receptor" type="xsd:string" use="required"/>
+                <xsd:attribute name="coste" type="xsd:positiveInteger" use="required"/>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="transportistaType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="T1"/>
+            <xsd:enumeration value="T2"/>
+            <xsd:enumeration value="T3"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="distanciaType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:decimal">
+                <xsd:attribute name="unidad" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+</xsd:schema>

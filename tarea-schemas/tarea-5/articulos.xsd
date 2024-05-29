@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="articulos" type="articulosType"/>
+
+    <xsd:complexType name="articulosType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="monitor" type="monitorType"/>
+                    <xsd:element name="teclado" type="tecladoType"/>
+                    <xsd:element name="raton" type="ratonType"/>
+                </xsd:choice>
+            	<xsd:attribute name="fechageneracion" type="xsd:date" use="required"/>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="monitorType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:sequence>
+                    <xsd:element name="descripcion" type="xsd:string"/>
+                    <xsd:element name="resolucion" type="resolucionType"/>
+                </xsd:sequence>
+            	<xsd:attribute name="codigo" type="codigoType" use="optional"/>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="codigoType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z]{3}-[a-zA-Z]{3}-\d{3}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="resolucionType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:sequence>
+                    <xsd:element name="ancho" type="xsd:unsignedInt"/>
+                    <xsd:element name="alto" type="xsd:unsignedInt"/>
+                </xsd:sequence>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="tecladoType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:sequence>
+                    <xsd:element name="descripcion" type="xsd:string"/>
+                </xsd:sequence>
+            	<xsd:attribute name="codigo" type="codigoType" use="optional"/>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="ratonType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+                <xsd:sequence>
+                    <xsd:element name="descripcion" type="xsd:string"/>
+                    <xsd:element name="peso" type="pesoType"/>
+                </xsd:sequence>
+            	<xsd:attribute name="codigo" type="codigoType" use="optional"/>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="pesoType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:unsignedInt">
+                <xsd:attribute name="unidad" type="unidadType" use="required"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="unidadType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="g"/>
+            <xsd:enumeration value="cg"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

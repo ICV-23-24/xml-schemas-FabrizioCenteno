@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="telefono" type="numeroType"/>
+
+    <xsd:simpleType name="numeroType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="\+[0-9]{1,3} [0-9]{4,14}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
